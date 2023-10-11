@@ -50,15 +50,51 @@ Este proyecto es una aplicación de ejemplo que utiliza Spring Boot y Spring Sec
 6. Abre tu navegador web y accede a la URL http://localhost:8080
 
 # Configuración de la Base de Datos PostgreSQL con Docker Compose
-   Asegúrate de tener Docker instalado en tu sistema.
+   Si deseas utilizar PostgreSQL como base de datos, puedes configurarla con Docker Compose, o puedes configurarla manualmente en tu máquina local o en un servidor remoto.
 
-   En la raíz del proyecto, ejecuta el siguiente comando para crear y ejecutar el contenedor de PostgreSQL:
+## Configuración de PostgreSQL con Docker Compose
+   1. Asegúrate de tener Docker o Docker Desktop instalado en tu sistema. Si no lo tienes, puedes descargarlo e instalarlo desde [aquí](https://www.docker.com/products/docker-desktop).
+   2. Ahora activa docker-compose en [application.properties](src%2Fmain%2Fresources%2Fapplication.properties) poniendolo en true:
+   
+   ```bash
+   # Activamos o desactivamos el uso de Docker Compose
+   # true: activa el uso de Docker Compose.
+   # false: desactiva el uso de Docker Compose.
+   spring.docker.compose.enabled=true
+   ```
+
+   4. Ejecuta en proyecto en Idea, o en la raíz del proyecto, ejecuta el siguiente comando para crear y ejecutar el contenedor de PostgreSQL:
     
    ```bash
    docker-compose up -d
    ```
         
    Esto levantará una instancia de PostgreSQL con los datos de usuario y base de datos configurados en el archivo docker-compose.yaml.
+
+## Configuracion de PostgreSQL en un servidor local o remoto
+ 1. Asegúrate de tener PostgreSQL instalado y ejecutando en tu máquina local o en un servidor remoto (por medio de un tunel ssh ```C2S```). Si no lo tienes, puedes descargarlo e instalarlo desde [aquí](https://www.postgresql.org/download/).
+ 2. Ahora desactiva docker-compose en [application.properties](src%2Fmain%2Fresources%2Fapplication.properties) poniéndolo en false:
+ 
+ ```bash
+ # Activamos o desactivamos el uso de Docker Compose
+ # true: activa el uso de Docker Compose.
+ # false: desactiva el uso de Docker Compose.
+ spring.docker.compose.enabled=false
+ ```
+ 3. Configura los datos de usuario y base de datos en [application.properties](src%2Fmain%2Fresources%2Fapplication.properties):
+ 
+ ```bash
+## Configuración de la base de datos
+# Configuración del proveedor de la base de datos y de la base de datos a utilizar.
+spring.datasource.url=jdbc:postgresql://localhost:5432/curso_springboot
+# Configuración del usuario
+spring.datasource.username = devdb
+# Configuración de la contraseña
+spring.datasource.password = a1b2c3d4
+ ```
+ 4. Ejecuta el proyecto en Idea, o en la raíz del proyecto, ejecuta el siguiente comando para iniciar la aplicación de Spring Boot:
+  
+
 
 # Diagrama del proyecto
 
