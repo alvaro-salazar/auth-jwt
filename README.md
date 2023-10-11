@@ -70,6 +70,8 @@ Este proyecto es una aplicación de ejemplo que utiliza Spring Boot y Spring Sec
 
    Accede a los puntos de acceso seguros como /auth/user/userProfile o /auth/admin/adminProfile incluyendo el token JWT en la cabecera de autorización.
 
+   Puedes usar la herramienta Postman para probar los puntos de acceso. Importa las colecciones en postman [Colecciones](Prueba%20de%20autenticacion.postman_collection.json) y las [variables](variables.postman_environment.json).
+
 ## Contribución
    Si deseas contribuir a este proyecto, no dudes en crear un pull request, tu ayuda es muy apreciada.
 
