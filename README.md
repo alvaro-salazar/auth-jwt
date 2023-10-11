@@ -54,9 +54,10 @@ Este proyecto es una aplicación de ejemplo que utiliza Spring Boot y Spring Sec
 
    En la raíz del proyecto, ejecuta el siguiente comando para crear y ejecutar el contenedor de PostgreSQL:
     
-    ```bash 
-    docker-compose up -d
-    ```
+   ```bash
+   docker-compose up -d
+   ```
+        
    Esto levantará una instancia de PostgreSQL con los datos de usuario y base de datos configurados en el archivo docker-compose.yaml.
 
 # Diagrama del proyecto
