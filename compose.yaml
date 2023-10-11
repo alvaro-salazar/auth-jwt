@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    environment:
+      - 'POSTGRES_DB=curso_springboot'
+      - 'POSTGRES_PASSWORD=a1b2c3d4'
+      - 'POSTGRES_USER=devdb'
+    ports:
+      - '5432'
