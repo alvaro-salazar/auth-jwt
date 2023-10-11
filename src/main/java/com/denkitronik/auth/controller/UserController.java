@@ -4,6 +4,7 @@ import com.denkitronik.auth.entity.AuthRequest;
 import com.denkitronik.auth.entity.UserInfo;
 import com.denkitronik.auth.service.JwtService;
 import com.denkitronik.auth.service.UserInfoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,18 +18,29 @@ import org.springframework.web.bind.annotation.*;
  * generación de tokens JWT para la autenticación en la aplicación. Los métodos están protegidos por anotaciones de
  * autorización para garantizar que solo los usuarios con los roles adecuados puedan acceder a ciertas rutas.
  */
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/auth")
 public class UserController {
 
-    @Autowired
     private UserInfoService service; // inyecta una instancia del servicio UserInfoService, que se utiliza para gestionar la información del usuario en la base de datos.
 
-    @Autowired
     private JwtService jwtService; // Inyecta una instancia del servicio JwtService, que se utiliza para generar tokens JWT y gestionar la autenticación.
 
-    @Autowired
     private AuthenticationManager authenticationManager; // Inyecta el AuthenticationManager, que se utiliza para autenticar a los usuarios.
+
+    /**
+     * Este es el constructor de la clase UserController. Se utiliza para inyectar las dependencias de la clase.
+     * @param service Es el servicio UserInfoService que se utiliza para gestionar la información del usuario en la base de datos
+     * @param jwtService Es el servicio JwtService que se utiliza para generar tokens JWT y gestionar la autenticación
+     * @param authenticationManager Es el AuthenticationManager que se utiliza para autenticar a los usuarios
+     */
+    @Autowired
+    public UserController(UserInfoService service, JwtService jwtService, AuthenticationManager authenticationManager) {
+        this.service = service;
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
+    }
 
     /**
      * Este método maneja las solicitudes GET a "/auth/welcome" y simplemente devuelve un mensaje de bienvenida.
