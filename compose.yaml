@@ -2,8 +2,29 @@ services:
   postgres:
     image: 'postgres:latest'
     environment:
-      - 'POSTGRES_DB=curso_springboot'
-      - 'POSTGRES_PASSWORD=a1b2c3d4'
-      - 'POSTGRES_USER=devdb'
+      POSTGRES_DB: curso_springboot
+      POSTGRES_PASSWORD: a1b2c3d4
+      POSTGRES_USER: devdb
+    volumes:
+      - ./data/db1:/var/lib/postgresql/data
     ports:
-      - '5432'
+      - '54321:5432'
+    networks:
+      - red-backend-app
+
+  auth-service:
+    image: 'alvarosalazar/auth-service:latest'
+    ports:
+      - '8081:8080'
+    depends_on:
+      - postgres
+    environment:
+      DB_URL: jdbc:postgresql://postgres/curso_springboot
+      DB_USERNAME: devdb
+      DB_PASSWORD: a1b2c3d4
+    networks:
+      - red-backend-app
+networks:
+  red-backend-app:
+    driver: bridge
+
